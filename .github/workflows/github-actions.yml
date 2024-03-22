@@ -18,7 +18,15 @@ jobs:
       uses: azure/setup-kubectl@v1
       with:
         version: 'latest'
-    - name: Deploy to Kubernetes
-      run: |
-        kubectl config set-context --current --namespace=default
-        kubectl apply -f deployment.yaml
+    - name: Install kubectl
+      run: sudo apt-get update && sudo snap install kubectl --classic
+    # - name: Install Azure CLI
+    #   run: sudo apt-get -y update && sudo apt-get -y install azure-cli && az
+    # - name: Connect Azure Cloud
+    #   run: az login --service-principal -u ${{ secrets.APPID }} -p ${{ secrets.AZ_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+    # - name: Get Azure kubernetes cluster informations
+    #   run: az aks get-credentials --resource-group hitema_kube --name hitema
+    # - name: Deploy to Kubernetes
+    #   run: |
+    #       kubectl config set-context --current --namespace=default
+    #       kubectl apply -f deployment.yaml
