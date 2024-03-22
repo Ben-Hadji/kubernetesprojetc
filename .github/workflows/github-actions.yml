@@ -10,27 +10,35 @@ jobs:
       with: 
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
     - name: Build and Push Docker Image
       run: |
         docker build -t benhadji99/my-app:latest .
         docker push benhadji99/my-app:latest
+
     - name: Set up Kubectl
       uses: azure/setup-kubectl@v1
       with:
         version: 'latest'
+    
     - name: Install kubectl
       run: sudo apt-get update && sudo snap install kubectl --classic
+    
     - name: Install Azure CLI
       run: sudo apt-get -y update && sudo apt-get -y install azure-cli && az
+    
     - name: Connect Azure Cloud
       run: az login --service-principal -u ${{ secrets.APPID }} -p ${{ secrets.AZ_SECRET }} --tenant ${{ secrets.TENANT_ID }}
+
     - name: Get Azure kubernetes cluster informations
       run: az aks get-credentials --resource-group hitema_kube --name hitema
+
     - name: Deploy to Kubernetes
       run: |
           kubectl config set-context --current --namespace=default
           kubectl apply -f back-deployment.yaml
           kubectl apply -f back-service.yaml
+          
     - name: Get service IP
       run: |
           sleep 60 # Wait for the service to be created
