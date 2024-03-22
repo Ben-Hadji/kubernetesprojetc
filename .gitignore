@@ -3,3 +3,8 @@ npm-debug.log
 .DS_Store
 .env
 dist/
+.terraform/
+.terraform.lock.hcl
+.terraform.tfstate.lock.info
+terraform.tfstate
+package-lock.json
