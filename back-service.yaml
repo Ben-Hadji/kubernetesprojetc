@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: my-app-ben-service
 spec:
   selector:
-    app: my-app
+    app: my-app-ben
   ports:
     - protocol: TCP
       port: 80

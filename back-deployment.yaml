@@ -2,19 +2,19 @@ apiVersion: apps/v1
 
 kind: Deployment
 metadata:
-  name: my-app
+  name: my-app-ben
 spec:
   replicas: 4
   selector:
     matchLabels:
-      app: my-app
+      app: my-app-ben
   template:
     metadata:
       labels:
-        app: my-app
+        app: my-app-ben
     spec:
       containers:
-      - name: my-app
+      - name: my-app-ben
         image: benhadji99/my-app:latest
         ports:
         - containerPort: 3000
