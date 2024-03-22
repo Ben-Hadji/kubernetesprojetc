@@ -30,3 +30,8 @@ jobs:
       run: |
           kubectl config set-context --current --namespace=default
           kubectl apply -f back-deployment.yaml
+          kubectl apply -f back-service.yaml
+    - name: Get service IP
+      run: |
+          sleep 60 # Wait for the service to be created
+          kubectl get service my-app-ben-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
