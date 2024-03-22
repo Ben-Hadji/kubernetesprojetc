@@ -25,7 +25,7 @@ jobs:
     - name: Connect Azure Cloud
       run: az login --service-principal -u ${{ secrets.APPID }} -p ${{ secrets.AZ_SECRET }} --tenant ${{ secrets.TENANT_ID }}
     - name: Get Azure kubernetes cluster informations
-      run: az aks get-credentials --resource-group ben_kube --name ben
+      run: az aks get-credentials --resource-group hitema_kube --name hitema
     - name: Deploy to Kubernetes
       run: |
           kubectl config set-context --current --namespace=default
